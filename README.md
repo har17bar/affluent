@@ -29,5 +29,5 @@ Build application
 - `yarn start` run app
 - `yarn build` build app
 - `yarn watch` watch changes
-- `yarn doc` app documentation**
+- `yarn doc` app documentation
 - `yarn format` code style format
