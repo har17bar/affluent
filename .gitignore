@@ -1,0 +1,7 @@
+.idea
+lib
+node_modules
+*.iml
+yarn.lock
+.DS_Store
+src/.DS_Store

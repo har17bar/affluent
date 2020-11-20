@@ -13,8 +13,21 @@ Switch to the repo folder
 Install dependencies
     
     yarn
+    
+Build application
+
+    yarn build
    
 ----------
 ## Start application
 
-- `npm start`
+- `yarn start`
+- `yarn start -l <login>` override login
+- `yarn start -p <password>` override password
+
+## NPM scripts
+- `yarn start` run app
+- `yarn build` build app
+- `yarn watch` watch changes
+- `yarn doc` app documentation**
+- `yarn format` code style format
