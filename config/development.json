@@ -1,5 +1,10 @@
 {
   "scrapUrl": "https://develop.pub.afflu.net",
   "startDate": "2020-10-01",
-  "endDate": "2020-10-30"
+  "endDate": "2020-10-30",
+  "database_hot": "sql12.freemysqlhosting.net",
+  "database_port": "3306",
+  "database_name": "sql12377907",
+  "database_user": "sql12377907",
+  "database_password": "5mjlJn31eg"
 }

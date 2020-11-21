@@ -13,10 +13,10 @@ export class Fetcher {
     };
   }
   public async scrape() {
-    const browser = await puppeteer.launch({ headless: false });
+    const browser = await puppeteer.launch({ headless: true });
     const page = await browser.newPage();
     await page.goto(this.config.scrapUrl);
-    await wait(1000);
+    await wait(2000);
 
     await page.type('input[type="email"]', this.config.email);
     await page.type('input[type="password"]', this.config.password);
@@ -27,9 +27,9 @@ export class Fetcher {
     await wait(2000);
 
     await page.click('.page-content-body .portlet-title .dataTables_length button');
-    await wait(3000);
+    await wait(2000);
 
-    await page.click('.page-content-body .portlet-title .dataTables_length .dropdown-menu ul li:last-child');
+    await page.click('.page-content-body .portlet-title .dataTables_length .dropdown-menu ul li:last-child a');
     await wait(2000);
 
     const result = await this.extractedEvaluateCall(page);
@@ -39,23 +39,18 @@ export class Fetcher {
 
   private async extractedEvaluateCall(page) {
     return page.evaluate(() => {
-      const DATES = {
-        0: 'date',
-        1: 'commissionsTotal',
-        2: 'sales',
-        3: 'leads',
-        4: 'clicks',
-        5: 'epc',
-        6: 'impressions',
-        7: 'cr',
-      };
       let dates = [];
       let elements = document.querySelectorAll('.table-responsive tbody tr') as NodeListOf<any>;
       for (const element of elements) {
-        dates.push({});
+        let date = [];
         for (let index = 0; index < element.childNodes.length; index++) {
-          dates[dates.length - 1][DATES[index]] = element.childNodes[index].innerText;
+          if (index == 4) {
+            date.push(parseFloat(element.childNodes[index].innerText.replace(/,/g, '')));
+          } else {
+            date.push(element.childNodes[index].innerText);
+          }
         }
+        dates.push(date);
       }
       return dates;
     });

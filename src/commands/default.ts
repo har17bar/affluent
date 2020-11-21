@@ -1,5 +1,6 @@
 import { Command, command, metadata, Options, option } from 'clime';
 import { Fetcher } from '../main/fetcher';
+import { Dao } from '../main/dao';
 
 class COptions extends Options {
   @option({
@@ -21,6 +22,8 @@ export default class extends Command {
   @metadata
   async execute(credentials: COptions) {
     const fetcher = new Fetcher(credentials);
-    return fetcher.scrape();
+    const dates = await fetcher.scrape();
+    const dao = Dao.establishConnection();
+    await dao.storeDates(dates);
   }
 }
