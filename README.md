@@ -22,8 +22,8 @@ Build application
 ## Start application
 
 - `yarn start`
-- `yarn start -l <login>` override login
-- `yarn start -p <password>` override password
+- `yarn start -l <login>` override affluent login
+- `yarn start -p <password>` override affluent password
 
 ## NPM scripts
 - `yarn start` run app
